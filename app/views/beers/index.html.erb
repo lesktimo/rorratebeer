@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Beers</h1>
+<h1>Listing Beers</h1>
 
 <table>
   <thead>
@@ -14,6 +14,7 @@
 
   <tbody>
     <% @beers.each do |beer| %>
+    
       <tr>
         <td><%= link_to beer.name, beer %></td>
         <td><%= beer.style %></td>
@@ -28,5 +29,4 @@
 <br>
 
 <%= link_to 'New Beer', new_beer_path %>
-<br/>
 <%= link_to 'List of breweries', breweries_path %>

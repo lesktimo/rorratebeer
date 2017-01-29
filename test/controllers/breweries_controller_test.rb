@@ -1,48 +1,49 @@
 require 'test_helper'
 
-class BreweriesControllerTest < ActionDispatch::IntegrationTest
+class BreweriesControllerTest < ActionController::TestCase
   setup do
     @brewery = breweries(:one)
   end
 
   test "should get index" do
-    get breweries_url
+    get :index
     assert_response :success
+    assert_not_nil assigns(:breweries)
   end
 
   test "should get new" do
-    get new_brewery_url
+    get :new
     assert_response :success
   end
 
   test "should create brewery" do
     assert_difference('Brewery.count') do
-      post breweries_url, params: { brewery: { name: @brewery.name, year: @brewery.year } }
+      post :create, brewery: { name: @brewery.name, year: @brewery.year }
     end
 
-    assert_redirected_to brewery_url(Brewery.last)
+    assert_redirected_to brewery_path(assigns(:brewery))
   end
 
   test "should show brewery" do
-    get brewery_url(@brewery)
+    get :show, id: @brewery
     assert_response :success
   end
 
   test "should get edit" do
-    get edit_brewery_url(@brewery)
+    get :edit, id: @brewery
     assert_response :success
   end
 
   test "should update brewery" do
-    patch brewery_url(@brewery), params: { brewery: { name: @brewery.name, year: @brewery.year } }
-    assert_redirected_to brewery_url(@brewery)
+    patch :update, id: @brewery, brewery: { name: @brewery.name, year: @brewery.year }
+    assert_redirected_to brewery_path(assigns(:brewery))
   end
 
   test "should destroy brewery" do
     assert_difference('Brewery.count', -1) do
-      delete brewery_url(@brewery)
+      delete :destroy, id: @brewery
     end
 
-    assert_redirected_to breweries_url
+    assert_redirected_to breweries_path
   end
 end

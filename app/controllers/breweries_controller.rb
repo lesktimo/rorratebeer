@@ -1,10 +1,13 @@
 class BreweriesController < ApplicationController
   before_action :set_brewery, only: [:show, :edit, :update, :destroy]
+  before_filter :authenticate, only: [:destroy]
+
 
   # GET /breweries
   # GET /breweries.json
   def index
     @breweries = Brewery.all
+   
   end
 
   # GET /breweries/1
@@ -71,4 +74,16 @@ class BreweriesController < ApplicationController
     def brewery_params
       params.require(:brewery).permit(:name, :year)
     end
+
+
+  private
+
+  def authenticate
+    admin_accounts =  { "admin" => "secret", "ankka" => "duck", "marsu" => "guineapig", "aasi" => "donkey"}
+    authenticate_or_request_with_http_basic do |username, password|
+      admin_accounts[username] == password
+    end
+  end  
+
+
 end
