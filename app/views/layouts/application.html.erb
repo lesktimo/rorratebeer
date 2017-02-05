@@ -12,8 +12,16 @@
   <%= link_to 'breweries', breweries_path %>
   <%= link_to 'beers', beers_path %>
   <%= link_to 'ratings', ratings_path %>
-  <% if not session[:user_id].nil? %>
-  <p><%= User.find(session[:user_id]).username %> signed in</p>
+  <%= link_to 'users', users_path %>
+  <b>|</b>
+  <% unless current_user %>
+  <%= link_to 'signin', signin_url %>
+  <%= link_to 'signup', signup_url %>
+  <% end %>
+  <% if current_user %>
+  <%= link_to 'signout',  session_url,  method: :delete%>
+  <%= link_to current_user.username, current_user %>
+  <%= link_to 'rate', new_rating_url %>
 <% end %>
 </div>
 <%= yield %>
