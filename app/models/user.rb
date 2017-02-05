@@ -14,9 +14,9 @@ class User < ApplicationRecord
 	validates :password_confirmation, 
 				:presence => true, 
 				:if => '!password.nil?'
-	has_many :ratings
-	has_many :memberships
+	has_many :ratings dependent: :destroy
+	has_many :memberships dependent: :destroy
 	has_many :beers, through: :ratings
-	has_many :beer_clubs, through: :memberships
+	has_many :beer_clubs, through: :memberships 
 	has_secure_password
 end
