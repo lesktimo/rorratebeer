@@ -3,7 +3,16 @@
 <p>
   <strong>Username:</strong>
   <%= @user.username %>
+  <% if @user.ratings.empty? %>
+ This user has not rated beers yet!
+<% else %>
+ <p>has made <%= pluralize(@user.ratings.count, 'rating')%>, average <%= @user.average_rating %></p> 
+<% end %>
 </p>
-
+<ul>
+ <% @user.ratings.each do |rating| %>
+   <li> <%= rating.to_s %> <%= link_to 'delete', rating, method: :delete, data: { confirm: 'Are you sure you want to delete?' }  %> </li>
+ <% end %>
+</ul>
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>
