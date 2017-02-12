@@ -1,10 +1,11 @@
 language: ruby
-
 rvm:
- - 2.4.0
-
+- 2.4.0
 script:
- - bundle exec rake db:migrate --trace
- - RAILS_ENV=test bundle exec rake db:migrate --trace
- - bundle exec rake db:test:prepare
- - bundle exec rspec -fd spec/
+- bundle exec rake db:migrate --trace
+- RAILS_ENV=test bundle exec rake db:migrate --trace
+- bundle exec rake db:test:prepare
+- bundle exec rspec -fd spec/
+deploy:
+  api_key:
+    secure: LCGVA4QxrIE71eQGpOi69y9zvIy5K9trmQMiXj++RA770IfzTDCFg7O0emYiT5fhWSqewXr9hYeOpT/EQvdKKlaGCXL/ZAHns5/9hsGIu59OwKrh7RvIWEN5+gjlEFzE6cNYIW/07xlagqZ88b+j0N1M6AQCQv1B3rGVElzuvSdhCWCiTU52qTv2J0yXuYRar3EDgCUY1JEjVfMn1b9rjPHNlTOgp4/gl3/rpffV5hSyiK4mylDz/vSwgXgZlmDv7bU3kpANLErxTp6jCXGnAWrhVQu5YB7meuhdEIL9JXLf4yxajM1H0OSYHRzIDOyhPGDTxzCZ3kMbBNsm69bbkGWZrSmBrxn/HXok6KR6VaLAm9VM0mr3V10e42gEBD1Ngfj8lF3FbbPB5Q0gl9q53yTjmAERFm3Cr7Q9OEf/IKiAQ+CIXI+Eqo1k2UO7un7CsSsH7wB8BOjGnYL9sXvhPljYvuXMVnkzHaz7Jvixuu3hDsCGy6maJg9KR2TArQdS5bwnlQBXQvbW1zxz/vo1EJ8RHJPuGvoPMN3kBxphrQgM0GpHS6U/tUTOjb9URbWIkv8uQ7wcv+L/LgZp5OAv9aZtsoNBQhNYbzgHgHVSawEu54QKQuwNyATG0kC4ALLKnKG97+QdHdq4zYJvoeMbtNIDH/HFrV15GvQ0fb00Epk=
