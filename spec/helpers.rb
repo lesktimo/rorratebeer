@@ -18,5 +18,4 @@ module Helpers
       create_beer_with_rating(user, style, brewery, score)
     end
   end
-  
 end
